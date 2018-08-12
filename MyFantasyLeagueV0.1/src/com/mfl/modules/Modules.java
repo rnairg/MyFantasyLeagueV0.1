@@ -4,12 +4,14 @@ import org.w3c.dom.Document;
 
 public interface Modules {
 
-	public Boolean add();
+	public Boolean create();
 	
-	public Boolean add(Document xmlresource);
+	public Boolean create(Document xmlresource);
+	
+	//public Boolean update(); // To be added later
+	
+	public void read();
 	
 	public Boolean delete();
-	
-	public void extract();
 	
 }

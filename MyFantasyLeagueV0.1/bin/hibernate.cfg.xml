@@ -32,7 +32,7 @@
 
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/mfldb?useSSL=false</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/mfldb</property>
         <property name="connection.username">rnairg</property>
         <property name="connection.password">password123</property>
 
@@ -53,6 +53,8 @@
 
         <!-- <mapping resource="org/hibernate/tutorial/hbm/Event.hbm.xml"/> -->
         <mapping class="com.mfl.models.Player"/>
+        <mapping class="com.mfl.models.Team"/>
+        <mapping class="com.mfl.models.Team$TeamComp"/>
        <!--  <mapping class="com.MFL.Domains.Teams"/>
         <mapping class="com.MFL.Domains.TeamComp"/> -->
 

@@ -28,15 +28,35 @@
 			</property>
 		</bean>
 	</property>
+	<property name="teamModule">
+		<bean class="com.mfl.modules.team.TeamModule">
+			<property name="txs" ref="teamxmlservices"/>
+			<property name="tds">
+				<bean class="com.mfl.modules.team.TeamDBServices">
+					<property name = "teams" ref="innerteams"/>
+				</bean>
+			</property>
+		</bean>
+	</property>
 	<!-- <property name="teamModule" ref="teammodule"/> -->
 	<property name="gda" ref="playerdataacquirer"/>
+	<property name="tgda" ref="teamdataacquirer"/>
 	<!-- <property name="tgda" ref="teamdataacquirer"/> -->
 </bean>
 
 <bean id = "playerxmlservices" class="com.mfl.modules.player.PlayerXMLServices">
 	<!-- <property name = "players" ref = "innerplayers"/>	 -->			
 </bean>
+<bean id = "teamxmlservices" class="com.mfl.modules.team.TeamXMLServices">
+	<!-- <property name = "players" ref = "innerplayers"/>	 -->			
+</bean>
 <bean id = "innerplayers" class="com.mfl.models.Player.Players">
+			<!-- <constructor-arg ref ="playerxmlservices"/> -->
+</bean>
+<bean id = "innerteams" class="com.mfl.models.Team.Teams">
+			<!-- <constructor-arg ref ="playerxmlservices"/> -->
+</bean>
+<bean id = "innerteamcomp" class="com.mfl.models.Team.TeamComp">
 			<!-- <constructor-arg ref ="playerxmlservices"/> -->
 </bean>
 
@@ -47,6 +67,9 @@
 </bean> -->
 <bean id="playerdataacquirer" class="com.mfl.GenericDataAcquirer">
 	<property name = "xmlresourcepath" value="${mfl.playerresourcepath}"/>
+</bean>
+<bean id="teamdataacquirer" class="com.mfl.GenericDataAcquirer">
+	<property name = "xmlresourcepath" value="${mfl.teamresourcepath}"/>
 </bean>
 
 <!-- <bean id="teamdataacquirer" class="com.MFL.Services.GenericDataAcquirer">

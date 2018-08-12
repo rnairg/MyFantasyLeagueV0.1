@@ -5,7 +5,7 @@ import com.mfl.modules.Modules;
 public class RequestHandlers {
 
 	private Modules playerModule;
-	//private Modules teamModule;
+	private Modules teamModule;
 	private GenericDataAcquirer gda;
 	private GenericDataAcquirer tgda;
 	
@@ -33,13 +33,13 @@ public class RequestHandlers {
 		return playerModule;
 	}
 
-	/*public Modules getTeamModule() {
+	public Modules getTeamModule() {
 		return teamModule;
 	}
 
 	public void setTeamModule(Modules teamModule) {
 		this.teamModule = teamModule;
-	}*/
+	}
 
 	
 	public void handleRequest(String choice)
@@ -47,13 +47,13 @@ public class RequestHandlers {
 		System.out.println("You Chose via Spring: "+choice);
 		if(choice.equals("Enter a Player"))
 		{
-			getPlayerModule().add(getGda().acquireXMLResourceByPath());
+			getPlayerModule().create(getGda().acquireXMLResourceByPath());
 			
 		}
 		if(choice.equals("Submit a Team"))
 		{
-			//getTeamModule().add(getTgda().acquireXMLResourceByPath());
-			System.out.println("Team Sumission Under Construction!");
+			getTeamModule().create(getTgda().acquireXMLResourceByPath());
+			//System.out.println("Team Sumission Under Construction!");
 			
 		}
 	}

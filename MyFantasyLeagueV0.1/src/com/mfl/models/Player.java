@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table (name="PLAYER_MASTER")
-public class Player {
+public class Player { //Model for Table PLAYER_MASTER
 	
 	@Id
 	@Column (name = "PLAYER_ID")
@@ -62,7 +62,7 @@ public class Player {
 		
 	}
 	@XmlRootElement(name="players")
-	public static class Players {
+	public static class Players { //Model for Player XML
 		
 		ArrayList<Player> players = new ArrayList<Player>();
 		public ArrayList<Player> getPlayers() {

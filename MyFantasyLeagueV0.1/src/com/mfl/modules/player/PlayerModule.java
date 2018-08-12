@@ -28,7 +28,7 @@ public class PlayerModule implements Modules {
 
 	
 	@Override
-	public Boolean add() {
+	public Boolean create() {
 		
 		return null;
 	}
@@ -40,14 +40,13 @@ public class PlayerModule implements Modules {
 	}
 
 	@Override
-	public void extract() {
+	public void read() {
 		// TODO Auto-generated method stub
 
 	}
 	
 	@Override
-	public Boolean add(Document xmlResource) {
-		
+	public Boolean create(Document xmlResource) {
 		
 		//((PlayerDBServices) getPds()).setPlayers(((PlayerXMLServices) getPxs()).xMLtoObject(xmlResource));
 		Players players = getPxs().xMLtoObject(xmlResource);
