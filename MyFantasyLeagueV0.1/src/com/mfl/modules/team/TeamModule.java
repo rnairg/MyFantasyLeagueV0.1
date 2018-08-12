@@ -35,9 +35,9 @@ public class TeamModule implements Modules {
 	@Override
 	public Boolean create(Document xmlResource) {
 		Teams teams = getTxs().xMLtoObject(xmlResource);
-		teams.displayTeams();
 		getTds().setTeams(teams);
 		getTds().objectToDB();
+		teams.displayTeams();
 		return null;
 	}
 

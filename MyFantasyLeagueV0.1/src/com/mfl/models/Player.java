@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
@@ -14,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table (name="PLAYER_MASTER")
 public class Player { //Model for Table PLAYER_MASTER
 	
-	@Id
+	@Id @GeneratedValue
 	@Column (name = "PLAYER_ID")
 	private int id;
 	

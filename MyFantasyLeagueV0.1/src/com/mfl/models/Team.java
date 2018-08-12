@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -15,9 +16,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table (name="TEAM_MASTER")
 public class Team { //Model for Table TEAM_MASTER
 
-	@Id
+	@Id @GeneratedValue
 	@Column (name="TEAM_ID")
-	protected int id;
+	private int id;
 	@Column (name="TEAM_NAME")
 	private String name;
 	@Column (name="TEAM_OWNER")

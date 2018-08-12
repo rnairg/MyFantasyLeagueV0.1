@@ -50,6 +50,7 @@ public class PlayerModule implements Modules {
 		
 		//((PlayerDBServices) getPds()).setPlayers(((PlayerXMLServices) getPxs()).xMLtoObject(xmlResource));
 		Players players = getPxs().xMLtoObject(xmlResource);
+		players.displayPlayers();
 		getPds().setPlayers(players);
 		getPds().objectToDB();
 		

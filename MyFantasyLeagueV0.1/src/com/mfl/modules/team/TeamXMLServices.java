@@ -19,14 +19,6 @@ public class TeamXMLServices implements XMLServices {
 				jc = JAXBContext.newInstance(Teams.class);
 				Unmarshaller um =jc.createUnmarshaller();
 				Teams teams = (Teams)um.unmarshal(xmlResource);
-				for(int i=0;i<teams.getTeams().size();i++)
-				{
-					for(int j=0;j<teams.getTeams().get(i).getTeamComp().size();j++)
-					{
-						teams.getTeams().get(i).getTeamComp().get(j).setTeamId(teams.getTeams().get(i).getId());
-						teams.getTeams().get(i).getTeamComp().get(j).setId(teams.getTeams().get(i).getId(),teams.getTeams().get(i).getTeamComp().get(j).getPlayerId());
-					}
-				}
 				return teams;
 			} catch (JAXBException e) {
 				// TODO Auto-generated catch block
