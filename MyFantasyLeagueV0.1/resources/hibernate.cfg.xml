@@ -54,7 +54,7 @@
         <!-- <mapping resource="org/hibernate/tutorial/hbm/Event.hbm.xml"/> -->
         <mapping class="com.mfl.models.Player"/>
         <mapping class="com.mfl.models.Team"/>
-        <mapping class="com.mfl.models.Team$TeamComp"/>
+        <!-- <mapping class="com.mfl.models.Team$TeamComp"/> -->
        <!--  <mapping class="com.MFL.Domains.Teams"/>
         <mapping class="com.MFL.Domains.TeamComp"/> -->
 

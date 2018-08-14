@@ -26,19 +26,7 @@ public class TeamDBServices implements DBServices {
 		
 		for(int i=0;i<teams.getTeams().size();i++)
 		{
-			int teamId = (Integer)s.save(teams.getTeams().get(i));
-			teams.getTeams().get(i).setId(teamId);
-			for(int j=0;j<teams.getTeams().get(i).getTeamComp().size();j++)
-				{
-					teams.getTeams().get(i).getTeamComp().get(j).setTeamId(teams.getTeams().get(i).getId());
-					teams.getTeams().get(i).getTeamComp().get(j).setId(teams.getTeams().get(i).getId(),teams.getTeams().get(i).getTeamComp().get(j).getPlayerId());
-					s.save(teams.getTeams().get(i).getTeamComp().get(j));
-				}
-			
-			/*for(int j=0;j<teams.getTeams().get(i).getTeamComp().size();j++)
-			{
-				s.save(teams.getTeams().get(i).getTeamComp().get(j));
-			}*/
+			s.save(teams.getTeams().get(i));
 		}
 		s.getTransaction().commit();
 		s.close();
