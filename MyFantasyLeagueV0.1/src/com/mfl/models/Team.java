@@ -3,13 +3,12 @@ package com.mfl.models;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -30,23 +29,23 @@ public class Team { //Model for Table TEAM_MASTER
 	private String name;
 	@Column (name="TEAM_OWNER")
 	private String owner;
-	@ElementCollection
+	@ManyToMany
 	@JoinTable(name="TEAM_COMP",
-			   joinColumns=@JoinColumn(name="TEAM_ID")
+			   joinColumns=@JoinColumn(name="TEAM_ID"),
+			inverseJoinColumns=@JoinColumn(name="PLAYER_ID")
 	)
 	@GenericGenerator(name="hilo-gen",strategy="hilo")
 	@CollectionId(columns= {@Column(name="TEAM_COMP_ID")},generator="hilo-gen",type=@Type(type="long"))
-	private Collection<TeamComp> teamComp = new ArrayList<TeamComp>();
-	
-	public Collection<TeamComp> getTeamComp() {
-		return teamComp;
+	private Collection<Player> players = new ArrayList<Player>();
+				
+	public Collection<Player> getPlayers() {
+		return players;
 	}
-	@XmlElementWrapper(name = "players")//Annotation to Bind Team Comp under Players Tag of Team XML
+	@XmlElementWrapper(name = "players")//Annotation to bind Player list of Team XML
 	@XmlElement(name = "player")
-	public void setTeamComp(Collection<TeamComp> teamComp) {
-		this.teamComp = teamComp;
+	public void setPlayers(Collection<Player> players) {
+		this.players = players;
 	}
-			
 	public int getId() {
 		return id;
 	}
@@ -66,21 +65,6 @@ public class Team { //Model for Table TEAM_MASTER
 		this.owner = owner;
 	}
 	
-	@Embeddable
-	@Table (name="TEAM_COMP")
-	public static class TeamComp{ //Model for Table TEAM_COMP
-		
-		@Column(name="PLAYER_ID")
-		private int playerId;
-		public int getPlayerId() {
-			return playerId;
-		}
-		@XmlElement(name ="id")
-		public void setPlayerId(int playerId) {
-			this.playerId = playerId;
-		}
-
-	}
 	@XmlRootElement(name = "teams") //Model Class for Teams XML
 	public static class Teams{
 		
@@ -102,15 +86,15 @@ public class Team { //Model for Table TEAM_MASTER
 			{
 				System.out.println("------\nID = "+getTeams().get(i).getId()+
 						"\nName = "+getTeams().get(i).getName()+
-						"\nOwner = "+getTeams().get(i).getOwner()+
-						"\nTeam Composition ="+getTeams().get(i).getTeamComp().size());
+						"\nOwner = "+getTeams().get(i).getOwner());
+						/*"\nTeam Composition ="+getTeams().get(i).getTeamComp().size());
 				for(int j=0;j<getTeams().get(i).getTeamComp().size();j++)
 				{
 					//System.out.println("Comp ID:"+((ArrayList<TeamComp>) getTeams().get(i).getTeamComp()).get(j).getId());
 					//System.out.println("Team ID:"+((ArrayList<TeamComp>) getTeams().get(i).getTeamComp()).get(j).getTeamId());
 					//System.out.println("Player ID:"+((ArrayList<TeamComp>) getTeams().get(i).getTeamComp()).get(j).getPlayerId());
 					System.out.println("Data Load Complete... Display Object are WIP");
-				}
+				}*/
 			}
 						
 		}

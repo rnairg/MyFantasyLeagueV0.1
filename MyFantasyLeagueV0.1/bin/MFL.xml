@@ -56,9 +56,9 @@
 <bean id = "innerteams" class="com.mfl.models.Team.Teams">
 			<!-- <constructor-arg ref ="playerxmlservices"/> -->
 </bean>
-<bean id = "innerteamcomp" class="com.mfl.models.Team.TeamComp">
-			<!-- <constructor-arg ref ="playerxmlservices"/> -->
-</bean>
+<!-- <bean id = "innerteamcomp" class="com.mfl.models.Team.TeamComp">
+			<constructor-arg ref ="playerxmlservices"/>
+</bean> -->
 
 <!-- <bean id = "players" class="com.MFL.Domains.Player" scope="prototype"/> -->
 

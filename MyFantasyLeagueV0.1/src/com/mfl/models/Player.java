@@ -1,11 +1,13 @@
 package com.mfl.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,6 +29,16 @@ public class Player { //Model for Table PLAYER_MASTER
 	
 	@Column (name = "PLAYER_IPL_TEAM")
 	private String iplTeam;
+	
+	@ManyToMany (mappedBy ="players")
+	private Collection<Team> teams = new ArrayList<Team>();
+	
+	public Collection<Team> getTeams() {
+		return teams;
+	}
+	public void setTeams(Collection<Team> teams) {
+		this.teams = teams;
+	}
 	public int getId() {
 		return id;
 	}
