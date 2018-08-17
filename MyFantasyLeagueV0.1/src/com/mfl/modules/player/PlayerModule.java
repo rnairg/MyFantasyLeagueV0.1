@@ -41,7 +41,9 @@ public class PlayerModule implements Modules {
 
 	@Override
 	public void read() {
-		// TODO Auto-generated method stub
+		getPds().dBToObject(3);
+		getPds().getPlayers().displayPlayers();
+		getPxs().objectToXML(getPds().getPlayers());
 
 	}
 	
@@ -49,7 +51,7 @@ public class PlayerModule implements Modules {
 	public Boolean create(Document xmlResource) {
 		
 		//((PlayerDBServices) getPds()).setPlayers(((PlayerXMLServices) getPxs()).xMLtoObject(xmlResource));
-		Players players = getPxs().xMLtoObject(xmlResource);
+		Players players = getPxs().xMLToObject(xmlResource);
 		players.displayPlayers();
 		getPds().setPlayers(players);
 		getPds().objectToDB();

@@ -6,7 +6,9 @@ import org.w3c.dom.Document;
 
 public interface XMLServices {
 	
-	public Object xMLtoObject(Document xmlResource);
+	public Object xMLToObject(Document xmlResource);
+	
+	public Document objectToXML(Object obj);
 
 	void displayObject();
 

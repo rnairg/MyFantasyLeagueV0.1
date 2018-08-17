@@ -17,15 +17,15 @@ public class MyFantasyLeague {
 		ApplicationContext context;
 		EnumMap<choice, String> map = new EnumMap<choice, String>(choice.class);
 		map.put(choice.a, "Submit a Team");
-		map.put(choice.b, "Submit a Prediction");
-		map.put(choice.c, "Enter a Player");
-		map.put(choice.d, "create New Rule");
+		map.put(choice.b, "Add a Player");
+		map.put(choice.c, "View Teams");
+		map.put(choice.d, "View Players");
 		
 		System.out.println("What would you like to do:\n");
 		System.out.println("a. Submit a Team\n");
-		System.out.println("b. Submit a Prediction\n");
-		System.out.println("c. Enter a Player\n");
-		System.out.println("d. create New Rule\n");
+		System.out.println("b. Add a Player\n");
+		System.out.println("c. View Teams\n");
+		System.out.println("d. View Players\n");
 		
 		Scanner sc = new Scanner(System.in);
 		

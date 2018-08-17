@@ -45,7 +45,7 @@ public class RequestHandlers {
 	public void handleRequest(String choice)
 	{
 		System.out.println("You Chose via Spring: "+choice);
-		if(choice.equals("Enter a Player"))
+		if(choice.equals("Add a Player"))
 		{
 			getPlayerModule().create(getGda().acquireXMLResourceByPath());
 			
@@ -53,6 +53,18 @@ public class RequestHandlers {
 		if(choice.equals("Submit a Team"))
 		{
 			getTeamModule().create(getTgda().acquireXMLResourceByPath());
+			//System.out.println("Team Sumission Under Construction!");
+			
+		}
+		if(choice.equals("View Players"))
+		{
+			getPlayerModule().read();
+			//System.out.println("Team Sumission Under Construction!");
+			
+		}
+		if(choice.equals("View Teams"))
+		{
+			getTeamModule().read();
 			//System.out.println("Team Sumission Under Construction!");
 			
 		}

@@ -1,13 +1,11 @@
 package com.mfl.models;
 
 import java.util.ArrayList;
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+//import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,7 +28,7 @@ public class Player { //Model for Table PLAYER_MASTER
 	@Column (name = "PLAYER_IPL_TEAM")
 	private String iplTeam;
 	
-	@ManyToMany (mappedBy ="players")
+	/*@ManyToMany (mappedBy ="players")
 	private Collection<Team> teams = new ArrayList<Team>();
 	
 	public Collection<Team> getTeams() {
@@ -38,7 +36,7 @@ public class Player { //Model for Table PLAYER_MASTER
 	}
 	public void setTeams(Collection<Team> teams) {
 		this.teams = teams;
-	}
+	}*/
 	public int getId() {
 		return id;
 	}
@@ -77,7 +75,7 @@ public class Player { //Model for Table PLAYER_MASTER
 	@XmlRootElement(name="players")
 	public static class Players { //Model for Player XML
 		
-		ArrayList<Player> players = new ArrayList<Player>();
+		private ArrayList<Player> players = new ArrayList<Player>();
 		public ArrayList<Player> getPlayers() {
 			return players;
 		}
@@ -85,6 +83,11 @@ public class Player { //Model for Table PLAYER_MASTER
 		@XmlElement(name="player")
 		public void setPlayers(ArrayList<Player> players) {
 			this.players = players;
+		}
+		
+		public void createPlayerList(Player player)
+		{
+			this.players.add(player);
 		}
 		
 		public void displayPlayers()
