@@ -8,10 +8,10 @@ public interface Modules {
 	
 	public Boolean create(Document xmlresource);
 	
-	//public Boolean update(); // To be added later
+	public Boolean update(Document xmlResource);
 	
 	public void read();
 	
-	public Boolean delete();
+	public Boolean delete(Document xmlResource);
 	
 }

@@ -1,6 +1,7 @@
 package com.mfl;
 
 import com.mfl.modules.Modules;
+import com.mfl.utils.CommonUtilities;
 
 public class RequestHandlers {
 
@@ -48,24 +49,49 @@ public class RequestHandlers {
 		if(choice.equals("Add a Player"))
 		{
 			getPlayerModule().create(getGda().acquireXMLResourceByPath());
+			CommonUtilities.displayMenu();
 			
 		}
 		if(choice.equals("Submit a Team"))
 		{
 			getTeamModule().create(getTgda().acquireXMLResourceByPath());
-			//System.out.println("Team Sumission Under Construction!");
-			
-		}
-		if(choice.equals("View Players"))
-		{
-			getPlayerModule().read();
-			//System.out.println("Team Sumission Under Construction!");
+			CommonUtilities.displayMenu();
 			
 		}
 		if(choice.equals("View Teams"))
 		{
 			getTeamModule().read();
-			//System.out.println("Team Sumission Under Construction!");
+			CommonUtilities.displayMenu();
+			
+		}
+		if(choice.equals("Update Teams"))
+		{
+			getTeamModule().update(getTgda().acquireXMLResourceByPath());
+			CommonUtilities.displayMenu();
+			
+		}
+		if(choice.equals("Delete Teams"))
+		{
+			getTeamModule().delete(getTgda().acquireXMLResourceByPath());
+			CommonUtilities.displayMenu();
+			
+		}
+		if(choice.equals("View Players"))
+		{
+			getPlayerModule().read();
+			CommonUtilities.displayMenu();
+			
+		}
+		if(choice.equals("Update Players"))
+		{
+			getPlayerModule().update(getGda().acquireXMLResourceByPath());
+			CommonUtilities.displayMenu();
+			
+		}
+		if(choice.equals("Delete Players"))
+		{
+			getPlayerModule().delete(getGda().acquireXMLResourceByPath());
+			CommonUtilities.displayMenu();
 			
 		}
 	}

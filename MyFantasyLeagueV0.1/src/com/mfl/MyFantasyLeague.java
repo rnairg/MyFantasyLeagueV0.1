@@ -9,7 +9,7 @@ import com.mfl.utils.CommonUtilities;
 
 public class MyFantasyLeague {
 	
-	public enum choice {a,b,c,d};
+	public enum choice {a,b,c,d,e,f,g,h};
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 				
@@ -17,15 +17,15 @@ public class MyFantasyLeague {
 		ApplicationContext context;
 		EnumMap<choice, String> map = new EnumMap<choice, String>(choice.class);
 		map.put(choice.a, "Submit a Team");
-		map.put(choice.b, "Add a Player");
-		map.put(choice.c, "View Teams");
-		map.put(choice.d, "View Players");
+		map.put(choice.b, "View Teams");
+		map.put(choice.c, "Update Teams");
+		map.put(choice.d, "Delete Teams");
+		map.put(choice.e, "Add a Player");
+		map.put(choice.f, "View Players");
+		map.put(choice.g, "Update Players");
+		map.put(choice.h, "Delete Players");
 		
-		System.out.println("What would you like to do:\n");
-		System.out.println("a. Submit a Team\n");
-		System.out.println("b. Add a Player\n");
-		System.out.println("c. View Teams\n");
-		System.out.println("d. View Players\n");
+		CommonUtilities.displayMenu();
 		
 		Scanner sc = new Scanner(System.in);
 		

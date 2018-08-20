@@ -103,4 +103,18 @@ public final class CommonUtilities {
 		return extractedDataMap;
 	}
 	
+	public static void displayMenu()
+	{
+		System.out.println("What would you like to do:\n");
+		System.out.println("---Team Options---\n");
+		System.out.println("a. Submit a Team\n");
+		System.out.println("b. View Teams\n");
+		System.out.println("c. Update Teams\n");
+		System.out.println("d. Delete Teams\n");
+		System.out.println("---Player Options---\n");
+		System.out.println("e. Add a Player\n");
+		System.out.println("f. View Players\n");
+		System.out.println("g. Update Players\n");
+		System.out.println("h. Delete Players\n");
+	}
 }

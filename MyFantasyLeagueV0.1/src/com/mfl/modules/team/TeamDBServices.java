@@ -13,6 +13,15 @@ import com.mfl.modules.DBServices;
 public class TeamDBServices implements DBServices {
 	
 	private Teams teams;
+	private String action;
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
 	SessionFactory sf = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
 	public Teams getTeams() {
@@ -27,10 +36,23 @@ public class TeamDBServices implements DBServices {
 	public Boolean objectToDB() {
 		Session s = sf.openSession();
 		s.beginTransaction();
-		
 		for(int i=0;i<teams.getTeams().size();i++)
 		{
+			System.out.println("Action is:"+getAction());
+			if(getAction().equals("create"))
+			{
 			s.save(teams.getTeams().get(i));
+			}
+			else if(getAction().equals("update"))
+			{
+				System.out.println("Here");
+			s.update(teams.getTeams().get(i));
+			}
+			else if(getAction().equals("delete"))
+			{
+			s.delete(teams.getTeams().get(i));
+			}
+			
 		}
 		s.getTransaction().commit();
 		s.close();

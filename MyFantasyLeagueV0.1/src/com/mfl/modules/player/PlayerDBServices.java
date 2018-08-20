@@ -16,6 +16,17 @@ public class PlayerDBServices implements DBServices {
 	
 	private Players players;
 	
+	private String action;
+	
+	public String getAction() {
+		return action;
+	}
+
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
 
 	private SessionFactory sf = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 	
@@ -36,8 +47,19 @@ public class PlayerDBServices implements DBServices {
 		System.out.println("Check point 1");
 		for(Player player:players.getPlayers())
 		{
-			System.out.println("Check point 2");
+			System.out.println("Action is:"+getAction());
+			if(getAction().equals("create"))
+			{
 			s.save(player);
+			}
+			else if(getAction().equals("update"))
+			{
+			s.update(player);
+			}
+			else if(getAction().equals("delete"))
+			{
+			s.delete(player);
+			}
 		}
 		s.getTransaction().commit();
 		s.close();

@@ -2,6 +2,7 @@ package com.mfl.models;
 
 import java.util.ArrayList;
 import javax.persistence.Column;
+//import javax.persistence.UniqueConstraint;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
-@Table (name="PLAYER_MASTER")
+@Table (name="PLAYER_MASTER")//,uniqueConstraints=@UniqueConstraint(columnNames= {"PLAYER_NAME","PLAYER_IPL_TEAM"}))
 public class Player { //Model for Table PLAYER_MASTER
 	
 	@Id @GeneratedValue

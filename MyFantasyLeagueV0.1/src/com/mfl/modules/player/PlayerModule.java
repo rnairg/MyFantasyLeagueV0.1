@@ -34,15 +34,19 @@ public class PlayerModule implements Modules {
 	}
 
 	@Override
-	public Boolean delete() {
-		// TODO Auto-generated method stub
+	public Boolean delete(Document xmlResource) {
+		Players players = getPxs().xMLToObject(xmlResource);
+		//players.displayPlayers();
+		getPds().setPlayers(players);
+		getPds().setAction("delete");
+		getPds().objectToDB();
 		return null;
 	}
 
 	@Override
 	public void read() {
 		getPds().dBToObject(3);
-		getPds().getPlayers().displayPlayers();
+		//getPds().getPlayers().displayPlayers();
 		getPxs().objectToXML(getPds().getPlayers());
 
 	}
@@ -52,10 +56,21 @@ public class PlayerModule implements Modules {
 		
 		//((PlayerDBServices) getPds()).setPlayers(((PlayerXMLServices) getPxs()).xMLtoObject(xmlResource));
 		Players players = getPxs().xMLToObject(xmlResource);
-		players.displayPlayers();
+		//players.displayPlayers();
 		getPds().setPlayers(players);
+		getPds().setAction("create");
 		getPds().objectToDB();
 		
+		return null;
+	}
+
+	@Override
+	public Boolean update(Document xmlResource) {
+		Players players = getPxs().xMLToObject(xmlResource);
+		//players.displayPlayers();
+		getPds().setPlayers(players);
+		getPds().setAction("update");
+		getPds().objectToDB();
 		return null;
 	}
 
