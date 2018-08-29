@@ -2,9 +2,6 @@ package com.mfl.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
