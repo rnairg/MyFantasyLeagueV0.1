@@ -5,4 +5,5 @@ public interface DBServices {
 	public Boolean objectToDB();
 
 	public Boolean dBToObject(int key);
+	
 }
