@@ -12,10 +12,6 @@
 	http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd">
     
 <context:property-placeholder location="classpath:mfl.properties"/>
-
-<!-- <bean id="playerunmarshaller" class="javax.xml.bind.JAXBContext">
-	<property name ="classesToBeBound" value = "com.mfl.modules.player.models.Players"/>
-</bean> -->
     
 <bean id="requesthandlers" class="com.mfl.RequestHandlers">
 	<property name="playerModule">
@@ -47,26 +43,16 @@
 </bean>
 
 <bean id = "playerxmlservices" class="com.mfl.modules.player.PlayerXMLServices">
-	<!-- <property name = "players" ref = "innerplayers"/>	 -->			
+	<property name = "jaxb2MarshallerP" ref = "jaxb2MarshallerP"/>			
 </bean>
 <bean id = "teamxmlservices" class="com.mfl.modules.team.TeamXMLServices">
-	<!-- <property name = "players" ref = "innerplayers"/>	 -->			
+	<property name = "jaxb2MarshallerT" ref = "jaxb2MarshallerT"/>			
 </bean>
 <bean id = "innerplayers" class="com.mfl.models.Player.Players">
-			<!-- <constructor-arg ref ="playerxmlservices"/> -->
 </bean>
 <bean id = "innerteams" class="com.mfl.models.Team.Teams">
-			<!-- <constructor-arg ref ="playerxmlservices"/> -->
 </bean>
-<!-- <bean id = "innerteamcomp" class="com.mfl.models.Team.TeamComp">
-			<constructor-arg ref ="playerxmlservices"/>
-</bean> -->
 
-<!-- <bean id = "players" class="com.MFL.Domains.Player" scope="prototype"/> -->
-
-
-<!-- <bean id="teammodule" class="com.MFL.Domains.Modules.TeamModule">
-</bean> -->
 <bean id="playerdataacquirer" class="com.mfl.GenericDataAcquirer">
 	<property name = "xmlresourcepath" value="${mfl.playerresourcepath}"/>
 </bean>
@@ -95,15 +81,16 @@
 	
 </bean>
 
-<!-- <bean id="teamdataacquirer" class="com.MFL.Services.GenericDataAcquirer">
-	<property name = "xmlresourcepath" value="${mfl.teamresourcepath}"/>
-</bean> -->
+<bean id="jaxb2MarshallerP" class = "org.springframework.oxm.jaxb.Jaxb2Marshaller">
+	<property name="classesToBeBound">
+		<value>com.mfl.models.Player.Players</value>
+	</property>
+</bean>
 
-<!-- <bean id = "players" class="com.MFL.Domains.Players"/>
-<bean id = "teams" class="com.MFL.Domains.Teams"/>
-<bean id = "teamcomp" class="com.MFL.Domains.TeamComp"/>
-
-<bean id = "playerdao" class="com.MFL.Domains.DAO.PlayerDAO"/>
- -->
+<bean id="jaxb2MarshallerT" class = "org.springframework.oxm.jaxb.Jaxb2Marshaller">
+	<property name="classesToBeBound">
+		<value>com.mfl.models.Team.Teams</value>
+	</property>
+</bean>
 
 </beans>

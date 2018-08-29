@@ -1,23 +1,30 @@
 package com.mfl.modules.team;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.w3c.dom.Document;
 import com.mfl.models.Team.Teams;
 import com.mfl.modules.XMLServices;
 
 public class TeamXMLServices implements XMLServices {
+	
+	Jaxb2Marshaller jaxb2MarshallerT;
+	
+	public Jaxb2Marshaller getJaxb2MarshallerT() {
+		return jaxb2MarshallerT;
+	}
+
+	public void setJaxb2MarshallerT(Jaxb2Marshaller jaxb2MarshallerT) {
+		this.jaxb2MarshallerT = jaxb2MarshallerT;
+	}
 
 	@Override
 	public Teams xMLToObject(Document xmlResource) {
 		try {
-			JAXBContext jc;
-			
-				jc = JAXBContext.newInstance(Teams.class);
-				Unmarshaller um =jc.createUnmarshaller();
+				Unmarshaller um =getJaxb2MarshallerT().getJaxbContext().createUnmarshaller();
 				Teams teams = (Teams)um.unmarshal(xmlResource);
 				return teams;
 			} catch (JAXBException e) {
@@ -38,10 +45,7 @@ public class TeamXMLServices implements XMLServices {
 	@Override
 	public Document objectToXML(Object teams) {
 		try {
-			JAXBContext jc;
-			
-				jc = JAXBContext.newInstance(Teams.class);
-				Marshaller m =jc.createMarshaller();
+				Marshaller m =getJaxb2MarshallerT().getJaxbContext().createMarshaller();
 				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
 				m.marshal((Teams)teams,System.out);
 				return null;

@@ -1,26 +1,34 @@
 package com.mfl.modules.player;
 
 
-import javax.xml.bind.JAXBContext;
 import com.mfl.models.Player.Players;
 import com.mfl.modules.XMLServices;
-
-//import com.mfl.modules.player.models.Players;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.w3c.dom.Document;
 
 public class PlayerXMLServices implements XMLServices {
 	
+	Jaxb2Marshaller jaxb2MarshallerP;
+	
+	public Jaxb2Marshaller getJaxb2MarshallerP() {
+		return jaxb2MarshallerP;
+	}
+
+	public void setJaxb2MarshallerP(Jaxb2Marshaller jaxb2MarshallerP) {
+		this.jaxb2MarshallerP = jaxb2MarshallerP;
+	}
+
 	@Override
 	public Players xMLToObject(Document xmlResource) {
 		try {
-			JAXBContext jc;
+			//JAXBContext jc;
 			
-				jc = JAXBContext.newInstance(Players.class);
-				Unmarshaller um =jc.createUnmarshaller();
+				//jc = JAXBContext.newInstance(Players.class);
+				Unmarshaller um = getJaxb2MarshallerP().getJaxbContext().createUnmarshaller();
 				return (Players)um.unmarshal(xmlResource);
 			} catch (JAXBException e) {
 				// TODO Auto-generated catch block
@@ -38,10 +46,10 @@ public class PlayerXMLServices implements XMLServices {
 	@Override
 	public Document objectToXML(Object players) {
 		try {
-			JAXBContext jc;
+			//JAXBContext jc;
 			
-				jc = JAXBContext.newInstance(Players.class);
-				Marshaller m =jc.createMarshaller();
+				//jc = JAXBContext.newInstance(Players.class);
+				Marshaller m =getJaxb2MarshallerP().getJaxbContext().createMarshaller();
 				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
 				m.marshal((Players)players,System.out);
 				return null;
