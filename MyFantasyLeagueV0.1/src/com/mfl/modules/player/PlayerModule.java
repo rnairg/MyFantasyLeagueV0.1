@@ -45,7 +45,14 @@ public class PlayerModule implements Modules {
 
 	@Override
 	public void read() {
-		getPds().dBToObject(3);
+		getPds().dBToObject();
+		//getPds().getPlayers().displayPlayers();
+		getPxs().objectToXML(getPds().getPlayers());
+
+	}
+	@Override
+	public void read(int i) {
+		getPds().dBToObject(i);
 		//getPds().getPlayers().displayPlayers();
 		getPxs().objectToXML(getPds().getPlayers());
 

@@ -3,6 +3,8 @@ package com.mfl.modules.player;
 import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
+
 import com.mfl.models.Player;
 import com.mfl.models.Player.Players;
 import com.mfl.modules.DBServices;
@@ -77,7 +79,18 @@ public class PlayerDBServices implements DBServices {
 	public Boolean dBToObject(int key) {
 		Session s = getSessionFactory().openSession();
 		s.beginTransaction();
-		players.setPlayers((ArrayList<Player>) s.createQuery("from Player").list());
+		players.setPlayers((ArrayList<Player>) s.createQuery("from Player  p where p.id="+key).list());
+		s.close();
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Boolean dBToObject() {
+		Session s = getSessionFactory().openSession();
+		s.beginTransaction();	
+		players.setPlayers((ArrayList<Player>)s.createQuery("select p.id as id, p.name as name from Player p").setResultTransformer(Transformers.aliasToBean(Player.class)).list());;
+		s.close();
 		return null;
 	}
 	

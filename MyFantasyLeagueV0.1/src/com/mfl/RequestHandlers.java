@@ -1,5 +1,7 @@
 package com.mfl;
 
+import java.util.Scanner;
+
 import com.mfl.modules.Modules;
 import com.mfl.utils.CommonUtilities;
 
@@ -79,7 +81,12 @@ public class RequestHandlers {
 		if(choice.equals("View Players"))
 		{
 			getPlayerModule().read();
+			System.out.println("Which Player would you like to view\n");
+			Scanner sc1 = new Scanner(System.in);
+			int c = Integer.parseInt(sc1.next());
+			getPlayerModule().read(c);
 			CommonUtilities.displayMenu();
+			//sc1.close();
 			
 		}
 		if(choice.equals("Update Players"))

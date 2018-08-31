@@ -13,5 +13,7 @@ public interface Modules {
 	public void read();
 	
 	public Boolean delete(Document xmlResource);
+
+	void read(int i);
 	
 }
