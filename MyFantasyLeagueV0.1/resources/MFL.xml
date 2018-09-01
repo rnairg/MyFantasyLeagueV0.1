@@ -36,10 +36,32 @@
 			</property>
 		</bean>
 	</property>
-	<!-- <property name="teamModule" ref="teammodule"/> -->
+	<property name="iplTeamModule">
+		<bean class="com.mfl.modules.iplteam.IplTeamModule">
+			<property name="itxs" ref="iplteamxmlservices"/>
+			<property name="itds">
+				<bean class="com.mfl.modules.iplteam.IplTeamDBServices">
+					<property name = "iplTeams" ref="inneriplteams"/>
+					<property name = "sessionFactory" ref="sessionFactory"/>
+				</bean>
+			</property>
+		</bean>
+	</property>
+	<property name="matchModule">
+		<bean class="com.mfl.modules.match.MatchModule">
+			<property name="mxs" ref="matchxmlservices"/>
+			<property name="mds">
+				<bean class="com.mfl.modules.match.MatchDBServices">
+					<property name = "matches" ref="innermatches"/>
+					<property name = "sessionFactory" ref="sessionFactory"/>
+				</bean>
+			</property>
+		</bean>
+	</property>
 	<property name="gda" ref="playerdataacquirer"/>
 	<property name="tgda" ref="teamdataacquirer"/>
-	<!-- <property name="tgda" ref="teamdataacquirer"/> -->
+	<property name="itgda" ref="iplteamdataacquirer"/>
+	<property name="mgda" ref="matchdataacquirer"/>
 </bean>
 
 <bean id = "playerxmlservices" class="com.mfl.modules.player.PlayerXMLServices">
@@ -48,9 +70,19 @@
 <bean id = "teamxmlservices" class="com.mfl.modules.team.TeamXMLServices">
 	<property name = "jaxb2MarshallerT" ref = "jaxb2MarshallerT"/>			
 </bean>
+<bean id = "iplteamxmlservices" class="com.mfl.modules.iplteam.IplTeamXMLServices">
+	<property name = "jaxb2MarshallerIT" ref = "jaxb2MarshallerIT"/>			
+</bean>
+<bean id = "matchxmlservices" class="com.mfl.modules.match.MatchXMLServices">
+	<property name = "jaxb2MarshallerM" ref = "jaxb2MarshallerM"/>			
+</bean>
 <bean id = "innerplayers" class="com.mfl.models.Player.Players">
 </bean>
 <bean id = "innerteams" class="com.mfl.models.Team.Teams">
+</bean>
+<bean id = "inneriplteams" class="com.mfl.models.IplTeam.IplTeams">
+</bean>
+<bean id = "innermatches" class="com.mfl.models.Match.Matches">
 </bean>
 
 <bean id="playerdataacquirer" class="com.mfl.GenericDataAcquirer">
@@ -58,6 +90,12 @@
 </bean>
 <bean id="teamdataacquirer" class="com.mfl.GenericDataAcquirer">
 	<property name = "xmlresourcepath" value="${mfl.teamresourcepath}"/>
+</bean>
+<bean id="iplteamdataacquirer" class="com.mfl.GenericDataAcquirer">
+	<property name = "xmlresourcepath" value="${mfl.iplteamresourcepath}"/>
+</bean>
+<bean id="matchdataacquirer" class="com.mfl.GenericDataAcquirer">
+	<property name = "xmlresourcepath" value="${mfl.matchresourcepath}"/>
 </bean>
 
 <bean id="dataSource" class = "org.apache.commons.dbcp2.BasicDataSource">
@@ -76,6 +114,8 @@
 	<property name="hibernateProperties">
 		<props>
 			<prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
+			<prop key="hibernate.hbm2ddl.auto">update</prop>
+			<prop key="hibernate.show_sql">true</prop>
 		</props>
 	</property>
 	
@@ -90,6 +130,16 @@
 <bean id="jaxb2MarshallerT" class = "org.springframework.oxm.jaxb.Jaxb2Marshaller">
 	<property name="classesToBeBound">
 		<value>com.mfl.models.Team.Teams</value>
+	</property>
+</bean>
+<bean id="jaxb2MarshallerIT" class = "org.springframework.oxm.jaxb.Jaxb2Marshaller">
+	<property name="classesToBeBound">
+		<value>com.mfl.models.IplTeam.IplTeams</value>
+	</property>
+</bean>
+<bean id="jaxb2MarshallerM" class = "org.springframework.oxm.jaxb.Jaxb2Marshaller">
+	<property name="classesToBeBound">
+		<value>com.mfl.models.Match.Matches</value>
 	</property>
 </bean>
 
