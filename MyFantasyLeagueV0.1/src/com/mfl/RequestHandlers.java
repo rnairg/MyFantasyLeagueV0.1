@@ -63,6 +63,10 @@ public class RequestHandlers {
 		if(choice.equals("View Teams"))
 		{
 			getTeamModule().read();
+			System.out.println("Which Team would you like to view\n");
+			Scanner sc1 = new Scanner(System.in);
+			int c = Integer.parseInt(sc1.next());
+			getTeamModule().read(c);
 			CommonUtilities.displayMenu();
 			
 		}

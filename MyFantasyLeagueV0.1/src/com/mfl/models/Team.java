@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -29,7 +30,7 @@ public class Team { //Model for Table TEAM_MASTER
 	private String name;
 	@Column (name="TEAM_OWNER")
 	private String owner;
-	@ManyToMany
+	@ManyToMany (fetch=FetchType.EAGER)
 	@JoinTable(name="TEAM_COMP",
 			   joinColumns=@JoinColumn(name="TEAM_ID"),
 			inverseJoinColumns=@JoinColumn(name="PLAYER_ID")

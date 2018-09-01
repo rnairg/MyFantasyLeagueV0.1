@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
 import com.mfl.models.Team;
 import com.mfl.models.Team.Teams;
 import com.mfl.modules.DBServices;
@@ -72,13 +73,18 @@ public class TeamDBServices implements DBServices {
 	public Boolean dBToObject(int key) {
 		Session s = getSessionFactory().openSession();
 		s.beginTransaction();
-		teams.setTeams((ArrayList<Team>) s.createQuery("from Team").list());
+		teams.setTeams((ArrayList<Team>) s.createQuery("from Team t where t.id="+key).list());
+		s.close();
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Boolean dBToObject() {
-		// TODO Auto-generated method stub
+		Session s = getSessionFactory().openSession();
+		s.beginTransaction();
+		teams.setTeams((ArrayList<Team>) s.createQuery("select t.id as id, t.name as name from Team t").setResultTransformer(Transformers.aliasToBean(Team.class)).list());
+		s.close();
 		return null;
 	}
 

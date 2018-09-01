@@ -43,7 +43,7 @@ public class TeamModule implements Modules {
 
 	@Override
 	public void read() {
-		getTds().dBToObject(3);
+		getTds().dBToObject();
 		//getTds().getTeams().displayTeams();
 		getTxs().objectToXML(getTds().getTeams());
 
@@ -71,7 +71,9 @@ public class TeamModule implements Modules {
 
 	@Override
 	public void read(int i) {
-		// TODO Auto-generated method stub
+		getTds().dBToObject(i);
+		//getTds().getTeams().displayTeams();
+		getTxs().objectToXML(getTds().getTeams());
 		
 	}
 
