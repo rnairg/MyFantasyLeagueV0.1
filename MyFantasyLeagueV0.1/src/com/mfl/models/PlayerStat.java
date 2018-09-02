@@ -1,13 +1,21 @@
 package com.mfl.models;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class PlayerStats {
+@Entity
+@Table (name="PLAYER_STATS")
+public class PlayerStat {
 	
 	@Id @GeneratedValue
 	@Column (name="PLAYER_STATS_ID")
@@ -61,7 +69,21 @@ public class PlayerStats {
 		this.runs = runs;
 	}
 	
-	
+	@XmlRootElement(name = "playerStats") //Model Class for PlayerStats XML
+	public static class PlayerStats{
+		
+		private ArrayList<PlayerStat> playerStats = new ArrayList<PlayerStat>();
+
+		public ArrayList<PlayerStat> getPlayerStats() {
+			return playerStats;
+		}
+		
+		@XmlElement(name = "playerStat")
+		public void setPlayerStats(ArrayList<PlayerStat> playerStats) {
+			this.playerStats = playerStats;
+		}
+		
+	}
 	
 
 }

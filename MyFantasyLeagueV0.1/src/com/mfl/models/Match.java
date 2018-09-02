@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,10 +23,12 @@ public class Match {
 	@Id @GeneratedValue
 	@Column (name="MATCH_ID")
 	private int id;
-	@Column (name="TEAM_ONE")
-	private String teamOne;
-	@Column (name="TEAM_TWO")
-	private String teamTwo;
+	@OneToOne
+	@JoinColumn (name="TEAM_ONE_ID")
+	private IplTeam teamOne;
+	@OneToOne
+	@JoinColumn (name="TEAM_TWO_ID")
+	private IplTeam teamTwo;
 	@Column (name="SCORE_ONE")
 	private int scoreOne;
 	@Column (name="SCORE_TWO")
@@ -42,16 +46,16 @@ public class Match {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTeamOne() {
+	public IplTeam getTeamOne() {
 		return teamOne;
 	}
-	public void setTeamOne(String teamOne) {
+	public void setTeamOne(IplTeam teamOne) {
 		this.teamOne = teamOne;
 	}
-	public String getTeamTwo() {
+	public IplTeam getTeamTwo() {
 		return teamTwo;
 	}
-	public void setTeamTwo(String teamTwo) {
+	public void setTeamTwo(IplTeam teamTwo) {
 		this.teamTwo = teamTwo;
 	}
 	public int getScoreOne() {

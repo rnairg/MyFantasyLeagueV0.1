@@ -11,10 +11,13 @@ public class RequestHandlers {
 	private Modules teamModule;
 	private Modules iplTeamModule;
 	private Modules matchModule;
+	private Modules playerStatModule;
 	private GenericDataAcquirer gda;
 	private GenericDataAcquirer tgda;
 	private GenericDataAcquirer mgda;
 	private GenericDataAcquirer itgda;
+	private GenericDataAcquirer psgda;
+	
 	
 	public GenericDataAcquirer getMgda() {
 		return mgda;
@@ -78,8 +81,24 @@ public class RequestHandlers {
 	public void setItgda(GenericDataAcquirer itgda) {
 		this.itgda = itgda;
 	}
-
 	
+		
+	public Modules getPlayerStatModule() {
+		return playerStatModule;
+	}
+
+	public void setPlayerStatModule(Modules playerStatModule) {
+		this.playerStatModule = playerStatModule;
+	}
+
+	public GenericDataAcquirer getPsgda() {
+		return psgda;
+	}
+
+	public void setPsgda(GenericDataAcquirer psgda) {
+		this.psgda = psgda;
+	}
+
 	public void handleRequest(String choice)
 	{
 		System.out.println("You Chose via Spring: "+choice);
@@ -199,6 +218,37 @@ public class RequestHandlers {
 		if(choice.equals("Delete Matches"))
 		{
 			getMatchModule().delete(getMgda().acquireXMLResourceByPath());
+			CommonUtilities.displayMenu();
+			
+		}
+		/*+++++++++++++IPL PLAYER STATS++++++++++++++*/		
+		if(choice.equals("Add a Player Stat"))
+		{
+			getPlayerStatModule().create(getPsgda().acquireXMLResourceByPath());
+			CommonUtilities.displayMenu();
+			
+		}
+		
+		if(choice.equals("View Player Stat"))
+		{
+			getPlayerStatModule().read();
+			System.out.println("Which Player Stat would you like to view\n");
+			Scanner sc1 = new Scanner(System.in);
+			int c = Integer.parseInt(sc1.next());
+			getPlayerStatModule().read(c);
+			CommonUtilities.displayMenu();
+			//sc1.close();
+			
+		}
+		if(choice.equals("Update Player Stat"))
+		{
+			getPlayerStatModule().update(getPsgda().acquireXMLResourceByPath());
+			CommonUtilities.displayMenu();
+			
+		}
+		if(choice.equals("Delete Player Stat"))
+		{
+			getPlayerStatModule().delete(getPsgda().acquireXMLResourceByPath());
 			CommonUtilities.displayMenu();
 			
 		}

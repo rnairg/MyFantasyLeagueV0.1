@@ -58,10 +58,22 @@
 			</property>
 		</bean>
 	</property>
+	<property name="playerStatModule">
+		<bean class="com.mfl.modules.playerstat.PlayerStatModule">
+			<property name="psxs" ref="playerstatxmlservices"/>
+			<property name="psds">
+				<bean class="com.mfl.modules.playerstat.PlayerStatDBServices">
+					<property name = "playerStats" ref="innerplayerstats"/>
+					<property name = "sessionFactory" ref="sessionFactory"/>
+				</bean>
+			</property>
+		</bean>
+	</property>
 	<property name="gda" ref="playerdataacquirer"/>
 	<property name="tgda" ref="teamdataacquirer"/>
 	<property name="itgda" ref="iplteamdataacquirer"/>
 	<property name="mgda" ref="matchdataacquirer"/>
+	<property name="psgda" ref="playerstatdataacquirer"/>
 </bean>
 
 <bean id = "playerxmlservices" class="com.mfl.modules.player.PlayerXMLServices">
@@ -76,6 +88,9 @@
 <bean id = "matchxmlservices" class="com.mfl.modules.match.MatchXMLServices">
 	<property name = "jaxb2MarshallerM" ref = "jaxb2MarshallerM"/>			
 </bean>
+<bean id = "playerstatxmlservices" class="com.mfl.modules.playerstat.PlayerStatXMLServices">
+	<property name = "jaxb2MarshallerPS" ref = "jaxb2MarshallerPS"/>			
+</bean>
 <bean id = "innerplayers" class="com.mfl.models.Player.Players">
 </bean>
 <bean id = "innerteams" class="com.mfl.models.Team.Teams">
@@ -83,6 +98,8 @@
 <bean id = "inneriplteams" class="com.mfl.models.IplTeam.IplTeams">
 </bean>
 <bean id = "innermatches" class="com.mfl.models.Match.Matches">
+</bean>
+<bean id = "innerplayerstats" class="com.mfl.models.PlayerStat.PlayerStats">
 </bean>
 
 <bean id="playerdataacquirer" class="com.mfl.GenericDataAcquirer">
@@ -96,6 +113,9 @@
 </bean>
 <bean id="matchdataacquirer" class="com.mfl.GenericDataAcquirer">
 	<property name = "xmlresourcepath" value="${mfl.matchresourcepath}"/>
+</bean>
+<bean id="playerstatdataacquirer" class="com.mfl.GenericDataAcquirer">
+	<property name = "xmlresourcepath" value="${mfl.playerstatresourcepath}"/>
 </bean>
 
 <bean id="dataSource" class = "org.apache.commons.dbcp2.BasicDataSource">
@@ -140,6 +160,11 @@
 <bean id="jaxb2MarshallerM" class = "org.springframework.oxm.jaxb.Jaxb2Marshaller">
 	<property name="classesToBeBound">
 		<value>com.mfl.models.Match.Matches</value>
+	</property>
+</bean>
+<bean id="jaxb2MarshallerPS" class = "org.springframework.oxm.jaxb.Jaxb2Marshaller">
+	<property name="classesToBeBound">
+		<value>com.mfl.models.PlayerStat.PlayerStats</value>
 	</property>
 </bean>
 
