@@ -118,5 +118,20 @@ public final class CommonUtilities {
 		System.out.println("f. View Players\n");
 		System.out.println("g. Update Players\n");
 		System.out.println("h. Delete Players\n");
+		System.out.println("---Match Options---\n");
+		System.out.println("i. Add a Match\n");
+		System.out.println("j. View Matches\n");
+		System.out.println("k. Update Matches\n");
+		System.out.println("l. Delete Matches\n");
+		System.out.println("---IPL Team Options---\n");
+		System.out.println("m. Submit a IPL Team\n");
+		System.out.println("n. View IPL Teams\n");
+		System.out.println("o. Update IPL Teams\n");
+		System.out.println("p. Delete IPL Teams\n");
+		System.out.println("---Player Stat Options---\n");
+		System.out.println("q. Submit a Player Stat\n");
+		System.out.println("r. View Player Stat\n");
+		System.out.println("s. Update Player Stat\n");
+		System.out.println("t. Delete Player Stat\n");
 	}
 }

@@ -61,9 +61,7 @@ public class PlayerModule implements Modules {
 	@Override
 	public Boolean create(Document xmlResource) {
 		
-		//((PlayerDBServices) getPds()).setPlayers(((PlayerXMLServices) getPxs()).xMLtoObject(xmlResource));
 		Players players = getPxs().xMLToObject(xmlResource);
-		//players.displayPlayers();
 		getPds().setPlayers(players);
 		getPds().setAction("create");
 		getPds().objectToDB();

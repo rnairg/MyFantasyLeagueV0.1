@@ -25,9 +25,6 @@ public class PlayerXMLServices implements XMLServices {
 	@Override
 	public Players xMLToObject(Document xmlResource) {
 		try {
-			//JAXBContext jc;
-			
-				//jc = JAXBContext.newInstance(Players.class);
 				Unmarshaller um = getJaxb2MarshallerP().getJaxbContext().createUnmarshaller();
 				return (Players)um.unmarshal(xmlResource);
 			} catch (JAXBException e) {
@@ -46,9 +43,6 @@ public class PlayerXMLServices implements XMLServices {
 	@Override
 	public Document objectToXML(Object players) {
 		try {
-			//JAXBContext jc;
-			
-				//jc = JAXBContext.newInstance(Players.class);
 				Marshaller m =getJaxb2MarshallerP().getJaxbContext().createMarshaller();
 				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,true);
 				m.marshal((Players)players,System.out);
