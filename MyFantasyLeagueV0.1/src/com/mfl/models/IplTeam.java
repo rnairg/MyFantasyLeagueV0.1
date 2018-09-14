@@ -36,8 +36,8 @@ public class IplTeam {
 			   joinColumns=@JoinColumn(name="IPL_TEAM_ID"),
 			inverseJoinColumns=@JoinColumn(name="PLAYER_ID")
 	)
-	@GenericGenerator(name="hilo-gen",strategy="hilo")
-	@CollectionId(columns= {@Column(name="IPL_TEAM_COMP_ID")},generator="hilo-gen",type=@Type(type="long"))
+	@GenericGenerator(name="increment-gen",strategy="increment")
+	@CollectionId(columns= {@Column(name="IPL_TEAM_COMP_ID")},generator="increment-gen",type=@Type(type="long"))
 	private Collection<Player> players = new ArrayList<Player>();
 	public int getId() {
 		return id;

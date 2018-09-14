@@ -1,32 +1,20 @@
 package com.mfl.modules.player;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 
 import com.mfl.models.Player.Players;
 import com.mfl.modules.Modules;
 
+@Service
 public class PlayerModule implements Modules {
 	
+	@Autowired
 	private PlayerXMLServices pxs;
+	@Autowired
 	private PlayerDBServices pds;
 
-	public PlayerDBServices getPds() {
-		return pds;
-	}
-
-	public void setPds(PlayerDBServices pds) {
-		this.pds = pds;
-	}
-
-	public void setPxs(PlayerXMLServices pxs) {
-		this.pxs = pxs;
-	}
-
-	public PlayerXMLServices getPxs() {
-		return pxs;
-	}
-
-	
 	@Override
 	public Boolean create() {
 		
@@ -35,47 +23,51 @@ public class PlayerModule implements Modules {
 
 	@Override
 	public Boolean delete(Document xmlResource) {
-		Players players = getPxs().xMLToObject(xmlResource);
+		Players players = pxs.xMLToObject(xmlResource);
 		//players.displayPlayers();
-		getPds().setPlayers(players);
-		getPds().setAction("delete");
-		getPds().objectToDB();
+		pds.setPlayers(players);
+		pds.setAction("delete");
+		pds.objectToDB();
 		return null;
 	}
 
 	@Override
-	public void read() {
-		getPds().dBToObject();
+	public Players read() {
+		pds.dBToObject();
 		//getPds().getPlayers().displayPlayers();
-		getPxs().objectToXML(getPds().getPlayers());
+		//getPxs().objectToXML(getPds().getPlayers());
+		
+		System.out.println("In read");
+		return pds.getPlayers();
 
 	}
 	@Override
-	public void read(int i) {
-		getPds().dBToObject(i);
+	public Players read(int i) {
+		pds.dBToObject(i);
 		//getPds().getPlayers().displayPlayers();
-		getPxs().objectToXML(getPds().getPlayers());
+		//pxs.objectToXML(pds.getPlayers());
+		return pds.getPlayers();
 
 	}
 	
 	@Override
 	public Boolean create(Document xmlResource) {
 		
-		Players players = getPxs().xMLToObject(xmlResource);
-		getPds().setPlayers(players);
-		getPds().setAction("create");
-		getPds().objectToDB();
+		Players players = pxs.xMLToObject(xmlResource);
+		pds.setPlayers(players);
+		pds.setAction("create");
+		pds.objectToDB();
 		
 		return null;
 	}
 
 	@Override
 	public Boolean update(Document xmlResource) {
-		Players players = getPxs().xMLToObject(xmlResource);
+		Players players = pxs.xMLToObject(xmlResource);
 		//players.displayPlayers();
-		getPds().setPlayers(players);
-		getPds().setAction("update");
-		getPds().objectToDB();
+		pds.setPlayers(players);
+		pds.setAction("update");
+		pds.objectToDB();
 		return null;
 	}
 

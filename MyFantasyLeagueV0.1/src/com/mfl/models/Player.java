@@ -11,7 +11,9 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
+import org.springframework.stereotype.Component;
+
+@Entity (name="player")
 @Table (name="PLAYER_MASTER")//,uniqueConstraints=@UniqueConstraint(columnNames= {"PLAYER_NAME","PLAYER_IPL_TEAM"}))
 public class Player { //Model for Table PLAYER_MASTER
 	
@@ -86,6 +88,7 @@ public class Player { //Model for Table PLAYER_MASTER
 		
 	}
 	@XmlRootElement(name="players")
+	@Component
 	public static class Players { //Model for Player XML
 		
 		private ArrayList<Player> players = new ArrayList<Player>();

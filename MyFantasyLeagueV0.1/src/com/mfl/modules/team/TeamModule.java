@@ -42,10 +42,11 @@ public class TeamModule implements Modules {
 	}
 
 	@Override
-	public void read() {
+	public Teams read() {
 		getTds().dBToObject();
 		//getTds().getTeams().displayTeams();
 		getTxs().objectToXML(getTds().getTeams());
+		return null;
 
 	}
 
@@ -70,10 +71,11 @@ public class TeamModule implements Modules {
 	}
 
 	@Override
-	public void read(int i) {
+	public Teams read(int i) {
 		getTds().dBToObject(i);
 		//getTds().getTeams().displayTeams();
 		getTxs().objectToXML(getTds().getTeams());
+		return null;
 		
 	}
 

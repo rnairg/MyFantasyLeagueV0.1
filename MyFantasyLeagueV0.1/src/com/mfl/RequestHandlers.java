@@ -21,7 +21,7 @@ public class RequestHandlers {
 	
 	public GenericDataAcquirer getMgda() {
 		return mgda;
-	}
+	}   
 
 	public void setMgda(GenericDataAcquirer mgda) {
 		this.mgda = mgda;

@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import com.mfl.models.Player;
 import com.mfl.models.Player.Players;
 import com.mfl.modules.DBServices;
 
+@Repository
 public class PlayerDBServices implements DBServices {
-	
+	@Autowired
 	private Players players;
 	
 	private String action;
 	
-	
+	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -77,19 +79,21 @@ public class PlayerDBServices implements DBServices {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Boolean dBToObject(int key) {
+		System.out.println("Check point 1");
 		Session s = getSessionFactory().openSession();
 		s.beginTransaction();
-		players.setPlayers((ArrayList<Player>) s.createQuery("from Player  p where p.id="+key).list());
+		players.setPlayers((ArrayList<Player>) s.createQuery("from player  p where p.id="+key).list());
 		s.close();
 		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public Boolean dBToObject() {
+		System.out.println("Check point 1");
 		Session s = getSessionFactory().openSession();
 		s.beginTransaction();	
-		players.setPlayers((ArrayList<Player>)s.createQuery("select p.id as id, p.name as name from Player p").setResultTransformer(Transformers.aliasToBean(Player.class)).list());;
+		players.setPlayers((ArrayList<Player>)s.createQuery("select p.id as id, p.name as name from player as p").setResultTransformer(Transformers.aliasToBean(Player.class)).list());
 		s.close();
 		return null;
 	}

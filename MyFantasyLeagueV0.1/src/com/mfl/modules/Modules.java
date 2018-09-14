@@ -10,10 +10,10 @@ public interface Modules {
 	
 	public Boolean update(Document xmlResource);
 	
-	public void read();
+	public Object read();
 	
 	public Boolean delete(Document xmlResource);
 
-	void read(int i);
+	public Object read(int i);
 	
 }

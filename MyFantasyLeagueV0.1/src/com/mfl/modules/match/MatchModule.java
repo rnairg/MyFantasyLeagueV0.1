@@ -50,10 +50,11 @@ public class MatchModule implements Modules {
 	}
 
 	@Override
-	public void read() {
+	public Matches read() {
 		getMds().dBToObject();
 		//getPds().getPlayers().displayPlayers();
 		getMxs().objectToXML(getMds().getMatches());
+		return null;
 
 	}
 
@@ -67,10 +68,11 @@ public class MatchModule implements Modules {
 	}
 
 	@Override
-	public void read(int i) {
+	public Matches read(int i) {
 		getMds().dBToObject(i);
 		//getPds().getPlayers().displayPlayers();
 		getMxs().objectToXML(getMds().getMatches());
+		return null;
 
 	}
 

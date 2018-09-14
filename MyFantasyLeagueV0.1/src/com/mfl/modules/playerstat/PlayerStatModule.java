@@ -53,10 +53,11 @@ public class PlayerStatModule implements Modules {
 	}
 
 	@Override
-	public void read() {
+	public PlayerStats read() {
 		getPsds().dBToObject();
 		//getTds().getTeams().displayTeams();
 		getPsxs().objectToXML(getPsds().getPlayerStats());
+		return null;
 
 	}
 
@@ -72,10 +73,11 @@ public class PlayerStatModule implements Modules {
 	}
 
 	@Override
-	public void read(int i) {
+	public PlayerStats read(int i) {
 		getPsds().dBToObject(i);
 		//getTds().getTeams().displayTeams();
 		getPsxs().objectToXML(getPsds().getPlayerStats());
+		return null;
 
 	}
 

@@ -43,10 +43,11 @@ public class IplTeamModule implements Modules {
 	}
 
 	@Override
-	public void read() {
+	public IplTeams read() {
 		getItds().dBToObject();
 		//getTds().getTeams().displayTeams();
 		getItxs().objectToXML(getItds().getIplTeams());
+		return null;
 
 	}
 
@@ -71,10 +72,11 @@ public class IplTeamModule implements Modules {
 	}
 
 	@Override
-	public void read(int i) {
+	public IplTeams read(int i) {
 		getItds().dBToObject(i);
 		//getTds().getTeams().displayTeams();
 		getItxs().objectToXML(getItds().getIplTeams());
+		return null;
 		
 	}
 
