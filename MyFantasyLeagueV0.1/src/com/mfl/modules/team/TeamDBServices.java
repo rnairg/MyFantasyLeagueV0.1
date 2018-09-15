@@ -5,24 +5,21 @@ import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.mfl.models.Team;
 import com.mfl.models.Team.Teams;
 import com.mfl.modules.DBServices;
-
+@Repository
 public class TeamDBServices implements DBServices {
-	
+	@Autowired
 	private Teams teams;
 	private String action;
 	
+	@Autowired
 	private SessionFactory sessionFactory;
 
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 	public String getAction() {
 		return action;
 	}
@@ -43,7 +40,7 @@ public class TeamDBServices implements DBServices {
 
 	@Override
 	public Boolean objectToDB() {
-		Session s = getSessionFactory().openSession();
+		Session s = sessionFactory.openSession();
 		s.beginTransaction();
 		for(int i=0;i<teams.getTeams().size();i++)
 		{
@@ -71,17 +68,17 @@ public class TeamDBServices implements DBServices {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Boolean dBToObject(int key) {
-		Session s = getSessionFactory().openSession();
+		Session s = sessionFactory.openSession();
 		s.beginTransaction();
 		teams.setTeams((ArrayList<Team>) s.createQuery("from Team t where t.id="+key).list());
 		s.close();
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public Boolean dBToObject() {
-		Session s = getSessionFactory().openSession();
+		Session s = sessionFactory.openSession();
 		s.beginTransaction();
 		teams.setTeams((ArrayList<Team>) s.createQuery("select t.id as id, t.name as name from Team t").setResultTransformer(Transformers.aliasToBean(Team.class)).list());
 		s.close();

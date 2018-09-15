@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Table (name="IPL_TEAM_MASTER")
@@ -61,6 +62,7 @@ public class IplTeam {
 	}
 	
 	@XmlRootElement(name = "iplTeams") //Model Class for Teams XML
+	@Component
 	public static class IplTeams{
 		
 		private ArrayList<IplTeam> teams = new ArrayList<IplTeam>();

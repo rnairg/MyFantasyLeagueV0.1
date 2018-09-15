@@ -20,18 +20,9 @@ public class PlayerDBServices implements DBServices {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
 	public String getAction() {
 		return action;
 	}
-
 
 	public void setAction(String action) {
 		this.action = action;
@@ -45,10 +36,9 @@ public class PlayerDBServices implements DBServices {
 		this.players = players;
 	}
 
-
 	@Override
 	public Boolean objectToDB() {
-		Session s = getSessionFactory().openSession();
+		Session s = sessionFactory.openSession();
 		s.beginTransaction();
 		System.out.println("Check point 1");
 		for(Player player:players.getPlayers())
@@ -80,7 +70,7 @@ public class PlayerDBServices implements DBServices {
 	@Override
 	public Boolean dBToObject(int key) {
 		System.out.println("Check point 1");
-		Session s = getSessionFactory().openSession();
+		Session s = sessionFactory.openSession();
 		s.beginTransaction();
 		players.setPlayers((ArrayList<Player>) s.createQuery("from player  p where p.id="+key).list());
 		s.close();
@@ -91,7 +81,7 @@ public class PlayerDBServices implements DBServices {
 	@Override
 	public Boolean dBToObject() {
 		System.out.println("Check point 1");
-		Session s = getSessionFactory().openSession();
+		Session s = sessionFactory.openSession();
 		s.beginTransaction();	
 		players.setPlayers((ArrayList<Player>)s.createQuery("select p.id as id, p.name as name from player as p").setResultTransformer(Transformers.aliasToBean(Player.class)).list());
 		s.close();

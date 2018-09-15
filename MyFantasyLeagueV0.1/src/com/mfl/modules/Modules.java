@@ -15,5 +15,11 @@ public interface Modules {
 	public Boolean delete(Document xmlResource);
 
 	public Object read(int i);
+
+	Boolean create(Object o);
+
+	Boolean delete(Object o);
+
+	Boolean update(Object o);
 	
 }

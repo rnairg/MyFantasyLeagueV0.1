@@ -5,10 +5,11 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import com.mfl.models.Team.Teams;
 import com.mfl.modules.XMLServices;
-
+@Service
 public class TeamXMLServices implements XMLServices {
 	
 	Jaxb2Marshaller jaxb2MarshallerT;

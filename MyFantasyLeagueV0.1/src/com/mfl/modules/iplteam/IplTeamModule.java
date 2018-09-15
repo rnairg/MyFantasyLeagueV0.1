@@ -1,30 +1,19 @@
 package com.mfl.modules.iplteam;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 
 import com.mfl.models.IplTeam.IplTeams;
 import com.mfl.modules.Modules;
-
+@Service
 public class IplTeamModule implements Modules {
 	
+	@Autowired
 	private IplTeamXMLServices itxs;
+	@Autowired
 	private IplTeamDBServices itds;
 
-	public IplTeamXMLServices getItxs() {
-		return itxs;
-	}
-
-	public void setItxs(IplTeamXMLServices itxs) {
-		this.itxs = itxs;
-	}
-
-	public IplTeamDBServices getItds() {
-		return itds;
-	}
-
-	public void setItds(IplTeamDBServices itds) {
-		this.itds = itds;
-	}
 
 	@Override
 	public Boolean create() {
@@ -34,50 +23,70 @@ public class IplTeamModule implements Modules {
 
 	@Override
 	public Boolean create(Document xmlResource) {
-		IplTeams iplteams = getItxs().xMLToObject(xmlResource);
-		getItds().setIplTeams(iplteams);
-		getItds().setAction("create");
-		getItds().objectToDB();
+		IplTeams iplteams = itxs.xMLToObject(xmlResource);
+		itds.setIplTeams(iplteams);
+		itds.setAction("create");
+		itds.objectToDB();
 		//teams.displayTeams();
+		return null;
+	}
+	@Override
+	public Boolean create(Object o) {
+		itds.setIplTeams((IplTeams)o);
+		itds.setAction("create");
+		itds.objectToDB();
 		return null;
 	}
 
 	@Override
 	public IplTeams read() {
-		getItds().dBToObject();
-		//getTds().getTeams().displayTeams();
-		getItxs().objectToXML(getItds().getIplTeams());
-		return null;
+		itds.dBToObject();
+		//itxs.objectToXML(itds.getIplTeams());
+		return itds.getIplTeams();
 
+	}
+	@Override
+	public IplTeams read(int i) {
+		itds.dBToObject(i);
+		//getTds().getTeams().displayTeams();
+		//itxs.objectToXML(itds.getIplTeams());
+		return itds.getIplTeams();
+		
 	}
 
 	@Override
 	public Boolean delete(Document xmlResource) {
-		IplTeams iplteams = getItxs().xMLToObject(xmlResource);
+		IplTeams iplteams = itxs.xMLToObject(xmlResource);
 		//players.displayPlayers();
-		getItds().setIplTeams(iplteams);
-		getItds().setAction("delete");
-		getItds().objectToDB();
+		itds.setIplTeams(iplteams);
+		itds.setAction("delete");
+		itds.objectToDB();
 		return null;
 	}
-
+	@Override
+	public Boolean delete(Object o) {
+		itds.setIplTeams((IplTeams)o);
+		itds.setAction("delete");
+		itds.objectToDB();
+		return null;
+	}
+	
 	@Override
 	public Boolean update(Document xmlResource) {
-		IplTeams iplteams = getItxs().xMLToObject(xmlResource);
+		IplTeams iplteams = itxs.xMLToObject(xmlResource);
 		//players.displayPlayers();
-		getItds().setIplTeams(iplteams);
-		getItds().setAction("update");
-		getItds().objectToDB();
+		itds.setIplTeams(iplteams);
+		itds.setAction("update");
+		itds.objectToDB();
+		return null;
+	}
+	@Override
+	public Boolean update(Object o) {
+		itds.setIplTeams((IplTeams)o);
+		itds.setAction("update");
+		itds.objectToDB();
 		return null;
 	}
 
-	@Override
-	public IplTeams read(int i) {
-		getItds().dBToObject(i);
-		//getTds().getTeams().displayTeams();
-		getItxs().objectToXML(getItds().getIplTeams());
-		return null;
-		
-	}
 
 }

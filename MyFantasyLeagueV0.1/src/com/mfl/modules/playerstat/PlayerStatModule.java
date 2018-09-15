@@ -81,4 +81,22 @@ public class PlayerStatModule implements Modules {
 
 	}
 
+	@Override
+	public Boolean create(Object o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean delete(Object o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean update(Object o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
